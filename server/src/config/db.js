@@ -7,9 +7,11 @@ export const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-pool.on("connect", () => {
-    console.log('Connection pool established with the database');
-});
+if (process.env.NODE_ENV !== "test") {
+  pool.on("connect", () => {
+    console.log("Connection pool established with the database");
+  });
+};
 
 pool.on("error", (err) => {
   console.error("Unexpected error on idle PostgreSQL client:", err);

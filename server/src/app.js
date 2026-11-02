@@ -4,10 +4,10 @@ import { toNodeHandler, fromNodeHeaders } from "better-auth/node";
 
 import { auth } from "./config/auth.js";
 import { requireAuth } from "./middleware/auth.middleware.js";
+import healthRoutes from "./controllers/health.controller.js";
 
 const app = express();
 
-// 1. CORS Configuration
 app.use(
   cors({
     origin: process.env.CLIENT_URL || "http://localhost:3000",
@@ -17,14 +17,14 @@ app.use(
   })
 );
 
-// 2. Mount Better Auth BEFORE express.json()
+// Mount Better Auth BEFORE express.json()
 // Better Auth handles sign-up, sign-in, sign-out, session retrieval, etc.
 app.all("/api/auth/*splat", toNodeHandler(auth));
 
-// 3. Body parser for all subsequent application routes
+// Body parser for all subsequent application routes
 app.use(express.json());
 
-// 4. Application Routes
+// Application Routes
 
 app.get("/", (req, res) => {
     res.status(200).json({
@@ -42,8 +42,7 @@ app.get("/test-auth", requireAuth, (req, res) => {
     });
 });
 
-// Add this before your 404 handler for testing:
-// This is for testing whether signing in with google works or not. I will be removed once we have our frontend setup for that
+// This is for testing whether signing in with google works or not. It will be removed once we have our frontend setup for that
 
 app.get("/auth/google", async (req, res) => {
   try {
@@ -77,7 +76,9 @@ app.get("/auth/google", async (req, res) => {
   }
 });
 
-// 5. 404 Fallback Handler
+app.use("/api/v1/health", healthRoutes)
+
+// 404 Fallback Handler
 app.use((req, res) => {
   res.status(404).json({
     success: false,
@@ -85,7 +86,7 @@ app.use((req, res) => {
   });
 });
 
-// 6. Global Error Handler
+// Global Error Handler
 app.use((err, req, res, next) => {
   console.error("Unhandled Application Error:", err);
   res.status(500).json({
