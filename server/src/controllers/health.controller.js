@@ -10,4 +10,4 @@ export const healthCheck = (req, res) => {
     })
 }
 
-export default healthCheck
+export default healthCheck;

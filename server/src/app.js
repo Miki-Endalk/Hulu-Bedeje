@@ -4,7 +4,9 @@ import { toNodeHandler, fromNodeHeaders } from "better-auth/node";
 
 import { auth } from "./config/auth.js";
 import { requireAuth } from "./middleware/auth.middleware.js";
-import healthRoutes from "./controllers/health.controller.js";
+import { requireRole } from "./middleware/role.middleware.js";
+import healthRoutes from "./routes/health.route.js";
+import authTestRoutes from "./routes/authTest.route.js";
 
 const app = express();
 
@@ -49,7 +51,7 @@ app.get("/auth/google", async (req, res) => {
     const authResponse = await auth.api.signInSocial({
       body: {
         provider: "google",
-        callbackURL: "http://localhost:5001/test-auth",
+        callbackURL: "http://localhost:5001/api/v1/auth/test/test-auth",
       },
       headers: fromNodeHeaders(req.headers),
       asResponse: true
@@ -76,7 +78,8 @@ app.get("/auth/google", async (req, res) => {
   }
 });
 
-app.use("/api/v1/health", healthRoutes)
+app.use("/api/v1/health", healthRoutes);
+app.use("/api/v1/auth/test", authTestRoutes);
 
 // 404 Fallback Handler
 app.use((req, res) => {
