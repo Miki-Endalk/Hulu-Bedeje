@@ -1,11 +1,11 @@
-# Artisans API (`/api/artisans`)
+# Artisans API (`/api/v1/artisans`)
 
 Handles artisan application, public directory discovery, artisan profiles, and availability toggles.
 
 ---
 
 ### **1. Apply to Become an Artisan**
-`POST /api/artisans/apply`  
+`POST /api/v1/artisans/apply`  
 ![POST](https://img.shields.io/badge/POST-4CAF50?style=flat&labelColor=000)
 
 **Auth:** `customer`  
@@ -37,7 +37,7 @@ Handles artisan application, public directory discovery, artisan profiles, and a
 ---
 
 ### **2. Discover Verified Artisans**
-`GET /api/artisans`  
+`GET /api/v1/artisans`  
 ![GET](https://img.shields.io/badge/GET-2196F3?style=flat&labelColor=000)
 
 **Auth:** Public  
@@ -71,7 +71,7 @@ Handles artisan application, public directory discovery, artisan profiles, and a
 ---
 
 ### **3. Get Artisan Public Profile**
-`GET /api/artisans/:id`  
+`GET /api/v1/artisans/:id`  
 ![GET](https://img.shields.io/badge/GET-2196F3?style=flat&labelColor=000)
 
 **Auth:** Public  
@@ -98,7 +98,7 @@ Handles artisan application, public directory discovery, artisan profiles, and a
 ---
 
 ### **4. Set Artisan Availability**
-`PATCH /api/artisans/availability`  
+`PATCH /api/v1/artisans/availability`  
 ![PATCH](https://img.shields.io/badge/PATCH-FFC107?style=flat&labelColor=000)
 
 **Auth:** `artisan`  

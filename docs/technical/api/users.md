@@ -1,11 +1,11 @@
-# Users API (`/api/users`)
+# Users API (`/api/v1/users`)
 
 Manages user profile information, contact details, and account settings.
 
 ---
 
 ### **1. Get My Profile**
-`GET /api/users/profile`  
+`GET /api/v1/users/profile`  
 ![GET](https://img.shields.io/badge/GET-2196F3?style=flat&labelColor=000)
 
 **Auth:** Authenticated user (`customer`, `artisan`, `administrator`)  
@@ -30,7 +30,7 @@ Manages user profile information, contact details, and account settings.
 ---
 
 ### **2. Update Profile**
-`PATCH /api/users/profile`  
+`PATCH /api/v1/users/profile`  
 ![PATCH](https://img.shields.io/badge/PATCH-FFC107?style=flat&labelColor=000)
 
 **Auth:** Authenticated user  

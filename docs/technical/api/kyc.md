@@ -1,3 +1,7 @@
+# KYC API (`/api/v1/kyc`)
+Handles submission and tracking of national identification and professional trade licenses.
+---
+
 ### **1. Submit KYC Verification**
 `POST /api/v1/kyc`  
 ![POST](https://img.shields.io/badge/POST-4CAF50?style=flat&labelColor=000)
