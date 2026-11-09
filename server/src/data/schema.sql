@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS bookings (
 CREATE TABLE IF NOT EXISTS reviews (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     booking_id UUID NOT NULL UNIQUE REFERENCES bookings(id) ON DELETE CASCADE, -- Prevents duplicate reviews
-    reviewer_id TEXT NOT NULL REFERENCES "user"(id) ON DELETE NULL,
+    reviewer_id TEXT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
     reviewed_user_id TEXT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
     rating INTEGER NOT NULL CHECK (rating >= 0 AND rating <= 5),
     comment TEXT,
