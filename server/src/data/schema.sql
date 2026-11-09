@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS addresses (
     description TEXT NOT NULL,
     latitude DECIMAL(9, 6),
     longitude DECIMAL(9, 6),
+    is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -67,10 +68,6 @@ CREATE TABLE IF NOT EXISTS kyc_applications (
     submitted_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     reviewed_at TIMESTAMP WITH TIME ZONE
 );
-
--- Safely adding is_deleted to existing addresses table
-ALTER TABLE addresses 
-ADD COLUMN IF NOT EXISTS is_deleted BOOLEAN NOT NULL DEFAULT FALSE;
 
 -- Bookings Table
 CREATE TABLE IF NOT EXISTS bookings (
