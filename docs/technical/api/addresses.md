@@ -1,6 +1,6 @@
 # Addresses API (`/api/v1/addresses`)
 
-Manages customer service locations within urban Ethiopia. Matches SRS Section 15.4.
+Manages customer service locations within urban Ethiopia.
 
 ---
 
