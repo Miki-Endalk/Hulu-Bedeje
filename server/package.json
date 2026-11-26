@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "db-migrate-test": "dotenv -e .env.test -- npx @better-auth/cli migrate --config src/config/auth.js",
+    "db:migrate": "npx @better-auth/cli migrate --config src/config/auth.js -y && node src/data/migrate.js",
+    "db-migrate-test": "dotenv -e .env.test -- npx @better-auth/cli migrate --config src/config/auth.js && dotenv -e .env.test -- node src/data/migrate.js",
     "test": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand",
     "test:watch": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --watch"
   },
@@ -15,7 +16,7 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "better-auth": "^1.7.14",
+    "better-auth": "^1.7.18",
     "cors": "^2.8.6",
     "dotenv": "^18.0.9",
     "express": "^5.3.0",
